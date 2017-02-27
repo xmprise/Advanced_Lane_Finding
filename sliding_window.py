@@ -161,22 +161,6 @@ def sliding_window(binary_warped):
     cv2.fillPoly(window_img, np.int_([right_line_pts]), (0, 255, 0))
     result = cv2.addWeighted(out_img, 1, window_img, 1, 0)
 
-    # Draw the lane onto the Arrow
-    # center_poly = np.int_((np.int_([left_line_pts]) + np.int_([right_line_pts])) / 2)
-    #dashed = True
-    #img_height = window_img.shape[0]
-    #pixels_per_step = img_height // 20
-    #print(len(center_poly))
-    #for i in range(20):
-    #    start = i * pixels_per_step
-    #    end = start + pixels_per_step
-
-    #    start_point = (center_poly[0], start)
-    #    end_point = (int(center_poly(end)), end)
-
-    #    if dashed is False or i % 2 == 1:
-    #        window_img = cv2.arrowedLine(window_img, end_point, start_point, 255, 10, tipLength=0.5)
-
     # if the lane was detected calculate curvature or use the history
     if leftx.size > 2 | rightx.size > 2:
         y_eval = np.max(ploty)
