@@ -55,3 +55,34 @@ This resulted in the following source and destination points:
 | 1080, 680     | 950, 680      |
 | 600, 450      | 320, 0        |
 | 690, 450      | 950, 0        |
+
+After Binary Thresholded Image
+
+|Perspective transformed (Bird's eye view)
+:----------------------------:|
+![Birdseye](perspective/perspective_1.png)|
+
+## Identify Pixels and Fit Polynomial
+
+Since not all pixels in the masked area are actually part of the lane, need to identify the most likely pixel. To make this possible, i use a sliding window search technique. Use the histogram of the pixels in the region to detect clusters of displayed pixels. The center of the sliding window search for the highest peak displayed in the histogram. It applies to the left half of the image, detects the left line pixels, and applies the right half of the image to detect the right lane pixels. Therefore, if the lane crosses the center of the image, the algorithm may fail.
+
+Take a histogram along all the columns in the lower half of the image. The histogram plot is shown below.
+![pixel histogram](perspective/histogram.png?raw=true "pixel histogram")
+
+The sliding window is displayed in green, and the left lane and the right lane are displayed in pink. The polynomial fit is indicated by a green line.
+
+Sliding Window                     |Polynomial fit
+:----------------------------:|:-----------------------------------------------------------:
+![Mask](perspective/window.png)| ![Birdseye](perspective/slides_pers.png)
+
+Applying a pipeline to a video frame can result in a lot of jitter between frames. To solve this we used smoothing / averaging before 10 frames without jitter. Polynomial fit works relatively well in frames that are not suitable.
+
+## Calculates the curvature of the lane and vehicle position relative to the center.
+The **curvature of the lanes** f<sub>(y)</sub> are calculated by using the formulae R<sub>(curve)</sub>
+![Curvature](perspective/rcurve.png?raw=true "Curvature")
+
+The **vehicle position** is calculated as the difference between the image center and the lane center.
+
+## Reflection
+The hard challenge is still not performed. Computer vision alone seems to have a limit. Backlighting is too fatal and the implementation is too complicated to consider all of the corner cases that break up rapidly. Also, since the current implementation can only clearly distinguish road lines, it is impossible to detect road lines that are blurred or twisty road lines in urban areas. The way to take all these cases into consideration is the deep-running approach.
+
