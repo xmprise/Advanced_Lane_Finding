@@ -72,11 +72,6 @@ def sliding_window(binary_warped):
     rightx = nonzerox[right_lane_inds]
     righty = nonzeroy[right_lane_inds]
 
-
-    """
-    The following code for sanity check code refers to udacity's 'Line'
-    class definition, john chen's jupyter notebook
-    """
     # check for any lanes that are not detected in this current frame then use the history
     if (leftx.size < 5):
         left_lane.detected = False
@@ -161,6 +156,10 @@ def sliding_window(binary_warped):
     cv2.fillPoly(window_img, np.int_([right_line_pts]), (0, 255, 0))
     result = cv2.addWeighted(out_img, 1, window_img, 1, 0)
 
+    """
+    The following code for sanity check code refers to udacity's 'Line'
+    class definition, john chen's jupyter notebook
+    """
     # if the lane was detected calculate curvature or use the history
     if leftx.size > 2 | rightx.size > 2:
         y_eval = np.max(ploty)
@@ -198,7 +197,6 @@ def sliding_window(binary_warped):
         right_lane.radius_of_curvature = np.vstack([right_lane.radius_of_curvature, avg_cur])
         right_lane.radius_of_curvature[0] = avg_cur
         right_lane.radius_of_curvature = np.average(right_lane.radius_of_curvature[-right_lane.smoothen_nframes:], axis=0)
-
 
     # reset the lane detected to false for the next frame
     left_lane.detected = False

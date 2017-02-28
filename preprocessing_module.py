@@ -75,11 +75,11 @@ def color_thr(s_img, v_img, s_threshold=(0, 255), v_threshold=(0, 255)):
     return col
 
 
-# the main thresholding operaion is performed here
+# the main thresholding operation is performed here
 def thresholding(img, grad_thx_min=211, grad_thx_max=255, grad_thy_min=0, grad_thy_max=25, mag_th_min=150,
                  mag_th_max=255, dir_th_min=0.7, dir_th_max=1.3, s_threshold_min=113, s_threshold_max=255,
                  v_threshold_min=234, v_threshold_max=255, k_size=3, adp_thr=250):
-    # Convert to HSV color space and separate the V channel
+
     imshape = img.shape
     # convert to HLS
     hls = cv2.cvtColor(img, cv2.COLOR_RGB2HLS).astype(np.float)
