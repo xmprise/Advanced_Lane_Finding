@@ -4,7 +4,6 @@ import matplotlib.image as mpimg
 from Line import *
 from scipy import signal
 
-
 def sliding_window(binary_warped):
     # Assuming you have created a warped binary image called "binary_warped"
     # Take a histogram of the bottom half of the image
@@ -72,6 +71,7 @@ def sliding_window(binary_warped):
     lefty = nonzeroy[left_lane_inds]
     rightx = nonzerox[right_lane_inds]
     righty = nonzeroy[right_lane_inds]
+
 
     """
     The following code for sanity check code refers to udacity's 'Line'
@@ -190,6 +190,15 @@ def sliding_window(binary_warped):
         left_lane.radius_of_curvature = np.vstack([left_lane.radius_of_curvature, avg_cur])
         left_lane.radius_of_curvature[0] = avg_cur
         left_lane.radius_of_curvature = np.average(left_lane.radius_of_curvature[-left_lane.smoothen_nframes:], axis=0)
+
+        right_lane.line_base_pos = np.vstack([right_lane.line_base_pos, dist_centre_val])
+        right_lane.line_base_pos[0] = dist_centre_val
+        right_lane.line_base_pos = np.average(right_lane.line_base_pos[-right_lane.smoothen_nframes:], axis=0)
+
+        right_lane.radius_of_curvature = np.vstack([right_lane.radius_of_curvature, avg_cur])
+        right_lane.radius_of_curvature[0] = avg_cur
+        right_lane.radius_of_curvature = np.average(right_lane.radius_of_curvature[-right_lane.smoothen_nframes:], axis=0)
+
 
     # reset the lane detected to false for the next frame
     left_lane.detected = False

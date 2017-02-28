@@ -6,6 +6,7 @@ from calibration_module import *
 from sliding_window import *
 import matplotlib.image as mpimg
 
+
 def draw_on_original(undist, left_fitx, right_fitx, ploty, Minv):
     # Create an image to draw the lines on
     color_warp = np.zeros_like(undist).astype(np.uint8)
@@ -56,8 +57,8 @@ def processing(img):
 
 if __name__ == '__main__':
 
-    clip1 = VideoFileClip('challenge_video.mp4')
+    clip1 = VideoFileClip('project_video.mp4')
     project_clip = clip1.fl_image(processing)
 
-    project_output = 'output_project_challenge.mp4'
+    project_output = 'output_project.mp4'
     project_clip.write_videofile(project_output, audio=False)
