@@ -84,5 +84,5 @@ The **curvature of the lanes** f<sub>(y)</sub> are calculated by using the formu
 The **vehicle position** is calculated as the difference between the image center and the lane center.
 
 ## Reflection
-The hard challenge is still not performed. Computer vision alone seems to have a limit. Backlighting is too fatal and the implementation is too complicated to consider all of the corner cases that break up rapidly. Also, since the current implementation can only clearly distinguish road lines, it is impossible to detect road lines that are blurred or twisty road lines in urban areas. The way to take all these cases into consideration is the deep-running approach.
+The hard challenge is still not performed. Computer vision alone seems to have a limit. Backlighting is too fatal and the implementation is too complicated to consider all of the corner cases that break up rapidly. Also, since the current implementation can only clearly distinguish road lines, it is impossible to detect road lines that are blurred or twisty road lines in urban areas. The way to take all these cases into consideration is the deep-learning approach.
 
